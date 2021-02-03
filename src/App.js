@@ -1,69 +1,36 @@
 import React, { Component } from "react";
-import uniqid from "uniqid";
 import General from "./components/General";
-import Educational from "./components/Educational";
+import Education from "./components/Education";
 import Work from "./components/Work"
+import ViewMode from "./components/ViewMode"
 
 class App extends Component {
   constructor() {
-    super()
+    super();
   
     this.state = {
-       name: 'initialName',
-       email: 'initial@email',
-       phone: '123',
-       school: "",
-       title: "",
-       startEduDate: "",
-       endEduDate: "",
-       companyName: "",
-       position: "",
-       tasks: "",
-       startWorkDate: "",
-       endWorkDate: "",
+      editMode: true,
+    };
+  }
+
+  toggleMode = () => {
+    if (this.state.editMode) {
+      this.setState({editMode: false});
+    } else {
+      this.setState({editMode: true});
     }
   }
   
-  genUpdate = (info) => {
-    this.setState({
-      name: info.name,
-      email: info.email,
-      phone: info.phone
-    })
-}
-
-eduUpdate = (info) => {
-  this.setState({
-    school: info.school,
-    title: info.title,
-    startEduDate: info.startEduDate,
-    endEduDate: info.endEduDate,
-  })
-}
-
-workUpdate = (info) => {
-  this.setState({
-    companyName: info.companyName,
-    position: info.position,
-    tasks: info.tasks,
-    startWorkDate: info.startWorkDate,
-    endWorkDate: info.endWorkDate,
-  })
-}
-   
   render() {
     return (
       <div>
-        <General passInfo = {this.genUpdate}/>
-        <Educational passInfo = {this.eduUpdate}/>
-        <Work passInfo = {this.workUpdate}/>
-        <ul>
-          {Object.values(this.state).map((info) => {
-            return <li key={uniqid()}>{info}</li>;
-          })}
-        </ul>
+        <h1>Resume Builder</h1>
+        <ViewMode editMode = {this.state.editMode} changeMode = {this.toggleMode}/>
+        <General editMode = {this.state.editMode}/>
+        <Education editMode = {this.state.editMode}/>
+        <Work editMode = {this.state.editMode}/>
       </div>
-    )
+    );
   }
 }
 

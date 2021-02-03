@@ -17,31 +17,34 @@ class General extends Component {
       [e.target.name]: e.target.value
     });
   }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.passInfo(this.state);
-  }
   
   render() {
-    return (
-      <div className="col-6 mx-auto mt-5">
-        <h1>General</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
+    if (this.props.editMode) {
+      return (
+        <div>
+          <h1>General</h1>
+          <div>
             <label>Name</label>
-            <input type="text" name="name" onChange={this.handleInputChange} className="form-control" required></input>
+            <input type="text" name="name" onChange={this.handleInputChange} value={this.state.name}></input>
             <label>Email</label>
-            <input type="email" name="email" onChange={this.handleInputChange} className="form-control" required></input>
+            <input type="email" name="email" onChange={this.handleInputChange} value={this.state.email}></input>
             <label>Phone</label>
-            <input type="tel" name="phone" onChange={this.handleInputChange} className="form-control" required></input>
+            <input type="tel" name="phone" onChange={this.handleInputChange} value={this.state.phone}></input>
           </div>
-          <div className="form-group">
-           <button type="submit" className="btn btn-primary">Submit</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <h1>General</h1>
+          <div>
+            <p>Name: {this.state.name}</p>
+            <p>Email: {this.state.email}</p>
+            <p>Phone: {this.state.phone}</p>
           </div>
-        </form>  
-      </div>
-    );
+        </div>
+      )
+    }
   };
 };
 
