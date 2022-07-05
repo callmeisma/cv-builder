@@ -34,6 +34,13 @@ class App extends Component {
         <General editMode={this.state.editMode} />
         <Education editMode={this.state.editMode} />
         <Work editMode={this.state.editMode} />
+
+      <footer className="d-flex flex-row justify-content-center align-items-center">
+        <p>Copyright © Ismael Fernandez</p>
+        <a href="https://github.com/callmeisma/memory-cards" target="_blank">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+      </footer>
       </div>
     );
   }
